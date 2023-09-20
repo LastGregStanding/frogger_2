@@ -29,7 +29,7 @@ select {
 
 .game {
   display: grid;
-  grid-template-columns: repeat(15, 1fr);
+  grid-template-columns: repeat(23, 1fr);
   width: 80vh;
   height: 50vh;
   margin: 10% auto;
@@ -50,4 +50,8 @@ select {
 }
 .grass {
   background-color: green;
+}
+
+.frog {
+  background-color: limegreen;
 }
