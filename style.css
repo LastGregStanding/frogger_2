@@ -12,6 +12,7 @@
 body {
   min-height: 100vh;
   background-color: black;
+  color: white;
 }
 
 button,
@@ -19,4 +20,34 @@ input,
 textarea,
 select {
   font: inherit;
+}
+
+.game-title {
+  text-align: center;
+  margin-top: 2%;
+}
+
+.game {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  width: 80vh;
+  height: 50vh;
+  margin: 10% auto;
+}
+
+.cell {
+  padding: auto;
+}
+
+.land {
+  background-color: purple;
+}
+.road {
+  background-color: grey;
+}
+.water {
+  background-color: lightblue;
+}
+.grass {
+  background-color: green;
 }
