@@ -50,7 +50,8 @@ function buildGame() {
 
 buildGame();
 
-let playerIndex = 155;
+//#region Move frog and frog design
+let playerIndex = 356;
 
 function drawFrog() {
   cells[playerIndex].classList.add("frog");
@@ -60,8 +61,6 @@ function eraseFrog() {
 }
 
 drawFrog();
-
-// Move frog
 
 document.addEventListener("keydown", function (key) {
   eraseFrog();
@@ -85,3 +84,44 @@ document.addEventListener("keydown", function (key) {
   }
   drawFrog();
 });
+
+//#endregion
+
+function Car(speed, currentIndex) {
+  this.speed = speed;
+  this.currentIndex = currentIndex;
+}
+
+const cars = [
+  new Car(100, [300, 301]),
+  new Car(100, [305, 306]),
+  new Car(100, [310, 311]),
+];
+
+function drawCar() {
+  cars.forEach((car) => {
+    car.currentIndex.forEach((index) => {
+      cells[index].classList.add("car");
+    });
+  });
+}
+
+function eraseCar() {
+  cars.forEach((car) => {
+    car.currentIndex.forEach((index) => {
+      cells[index].classList.remove("car");
+    });
+  });
+}
+
+drawCar();
+
+function moveCar() {
+  eraseCar();
+  cars.forEach((car) => {
+    car.currentIndex = car.currentIndex.map((index) => index + 1);
+  });
+  drawCar();
+}
+
+// setInterval(moveCar, 500);
