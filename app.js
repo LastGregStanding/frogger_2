@@ -98,11 +98,17 @@ const cars = [
   new Car("black", [305, 306], "right"),
   new Car("black", [310, 311], "right"),
   new Car("black", [315, 316], "right"),
+  new Car("black", [320, 321], "right"),
   new Car("brown", [297, 296], "left"),
   new Car("brown", [292, 291], "left"),
   new Car("brown", [287, 286], "left"),
   new Car("brown", [282, 281], "left"),
   new Car("brown", [277, 276], "left"),
+  new Car("black", [275, 274], "right"),
+  new Car("black", [270, 269], "right"),
+  new Car("black", [265, 264], "right"),
+  new Car("black", [260, 259], "right"),
+  new Car("black", [255, 254], "right"),
 ];
 
 function drawCar() {
@@ -125,15 +131,18 @@ function eraseCar() {
   cars.forEach((car) => {
     car.currentIndex.forEach((index) => {
       cells[index].classList.remove("car");
+      cells[index].style.backgroundColor = "grey";
     });
   });
 }
 
 function moveCar() {
   cars.forEach((car) => {
-    car.direction === "right"
-      ? (car.currentIndex = car.currentIndex.map((index) => index + 1))
-      : (car.currentIndex = car.currentIndex.map((index) => index - 1));
+    if (car.direction === "right") {
+      car.currentIndex = car.currentIndex.map((index) => index + 1);
+    } else {
+      car.currentIndex = car.currentIndex.map((index) => index - 1);
+    }
   });
 }
 
@@ -145,6 +154,10 @@ function animateCar() {
   drawCar();
 }
 
-// cells[321].classList.add("car");
-
 // setInterval(animateCar, 500);
+
+/*
+
+I also need to figure out how to deal with the cars once they hid the edge of the road. I need them to repeat on the opposite side. 
+
+*/
