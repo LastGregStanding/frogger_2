@@ -87,21 +87,36 @@ document.addEventListener("keydown", function (key) {
 
 //#endregion
 
-function Car(speed, currentIndex) {
-  this.speed = speed;
+function Car(color, currentIndex, direction) {
+  this.color = color;
   this.currentIndex = currentIndex;
+  this.direction = direction;
 }
 
 const cars = [
-  new Car(100, [300, 301]),
-  new Car(100, [305, 306]),
-  new Car(100, [310, 311]),
+  new Car("black", [300, 301], "right"),
+  new Car("black", [305, 306], "right"),
+  new Car("black", [310, 311], "right"),
+  new Car("black", [315, 316], "right"),
+  new Car("brown", [297, 296], "left"),
+  new Car("brown", [292, 291], "left"),
+  new Car("brown", [287, 286], "left"),
+  new Car("brown", [282, 281], "left"),
+  new Car("brown", [277, 276], "left"),
 ];
 
 function drawCar() {
   cars.forEach((car) => {
     car.currentIndex.forEach((index) => {
       cells[index].classList.add("car");
+      switch (car.color) {
+        case "black":
+          cells[index].style.backgroundColor = "black";
+          break;
+        case "brown":
+          cells[index].style.backgroundColor = "brown";
+          break;
+      }
     });
   });
 }
@@ -114,14 +129,22 @@ function eraseCar() {
   });
 }
 
+function moveCar() {
+  cars.forEach((car) => {
+    car.direction === "right"
+      ? (car.currentIndex = car.currentIndex.map((index) => index + 1))
+      : (car.currentIndex = car.currentIndex.map((index) => index - 1));
+  });
+}
+
 drawCar();
 
-function moveCar() {
+function animateCar() {
   eraseCar();
-  cars.forEach((car) => {
-    car.currentIndex = car.currentIndex.map((index) => index + 1);
-  });
+  moveCar();
   drawCar();
 }
 
-// setInterval(moveCar, 500);
+// cells[321].classList.add("car");
+
+// setInterval(animateCar, 500);
