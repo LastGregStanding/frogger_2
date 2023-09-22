@@ -53,5 +53,5 @@ select {
 }
 
 .frog {
-  background-color: limegreen;
+  background-color: limegreen !important;
 }
