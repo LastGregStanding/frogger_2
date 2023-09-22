@@ -139,9 +139,25 @@ function eraseCar() {
 function moveCar() {
   cars.forEach((car) => {
     if (car.direction === "right") {
-      car.currentIndex = car.currentIndex.map((index) => index + 1);
+      car.currentIndex = car.currentIndex.map((index) => {
+        switch (index) {
+          case 275:
+            return (index = 253);
+          case 321:
+            return (index = 299);
+          default:
+            return index + 1;
+        }
+      });
     } else {
-      car.currentIndex = car.currentIndex.map((index) => index - 1);
+      car.currentIndex = car.currentIndex.map((index) => {
+        switch (index) {
+          case 276:
+            return (index = 298);
+          default:
+            return index - 1;
+        }
+      });
     }
   });
 }
@@ -154,10 +170,10 @@ function animateCar() {
   drawCar();
 }
 
-// setInterval(animateCar, 500);
+setInterval(animateCar, 500);
 
 /*
 
-I also need to figure out how to deal with the cars once they hid the edge of the road. I need them to repeat on the opposite side. 
+
 
 */
