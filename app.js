@@ -104,11 +104,21 @@ const cars = [
   new Car("brown", [287, 286], "left"),
   new Car("brown", [282, 281], "left"),
   new Car("brown", [277, 276], "left"),
-  new Car("black", [275, 274], "right"),
-  new Car("black", [270, 269], "right"),
-  new Car("black", [265, 264], "right"),
-  new Car("black", [260, 259], "right"),
-  new Car("black", [255, 254], "right"),
+  new Car("black", [273, 272], "right"),
+  new Car("black", [268, 267], "right"),
+  new Car("black", [263, 262], "right"),
+  new Car("black", [258, 257], "right"),
+  new Car("black", [254, 253], "right"),
+  new Car("brown", [249, 248], "left"),
+  new Car("brown", [244, 243], "left"),
+  new Car("brown", [239, 238], "left"),
+  new Car("brown", [234, 233], "left"),
+  new Car("brown", [252, 230], "left"),
+  new Car("black", [228, 227], "right"),
+  new Car("black", [223, 222], "right"),
+  new Car("black", [218, 217], "right"),
+  new Car("black", [213, 212], "right"),
+  new Car("black", [208, 207], "right"),
 ];
 
 function drawCar() {
@@ -145,6 +155,9 @@ function moveCar() {
             return (index = 253);
           case 321:
             return (index = 299);
+
+          case 229:
+            return (index = 207);
           default:
             return index + 1;
         }
@@ -154,6 +167,8 @@ function moveCar() {
         switch (index) {
           case 276:
             return (index = 298);
+          case 230:
+            return (index = 252);
           default:
             return index - 1;
         }
@@ -162,15 +177,18 @@ function moveCar() {
   });
 }
 
-drawCar();
-
 function animateCar() {
   eraseCar();
   moveCar();
   drawCar();
 }
 
-setInterval(animateCar, 500);
+document.addEventListener("keydown", function (key) {
+  if (key.keyCode === 13) {
+    drawCar();
+    setInterval(animateCar, 500);
+  }
+});
 
 /*
 
