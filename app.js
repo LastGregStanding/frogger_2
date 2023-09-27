@@ -87,6 +87,7 @@ document.addEventListener("keydown", function (key) {
 
 //#endregion
 
+//#region Cars
 function Car(color, currentIndex, direction) {
   this.color = color;
   this.currentIndex = currentIndex;
@@ -181,6 +182,59 @@ function animateCar() {
   eraseCar();
   moveCar();
   drawCar();
+}
+
+//#endregion
+
+// function Log(currentIndex, speed) {}
+
+function Log(currentIndex, direction) {
+  this.currentIndex = currentIndex;
+  this.direction = direction;
+}
+
+const logs = [
+  new Log([53], "right"),
+  new Log([60], "right"),
+  new Log([68], "right"),
+  new Log([75, 76], "left"),
+  new Log([85, 86, 87], "left"),
+  new Log([94], "right"),
+  new Log([100], "right"),
+  new Log([106], "right"),
+  new Log([112], "right"),
+  new Log([120, 121, 122], "left"),
+  new Log([130, 131, 132], "left"),
+  new Log([140], "right"),
+  new Log([146], "right"),
+  new Log([152], "right"),
+  new Log([158], "right"),
+];
+
+function drawLog() {
+  logs.forEach((log) => {
+    log.currentIndex.forEach((index) => {
+      cells[index].classList.add("log");
+      cells[index].style.backgroundColor = "brown";
+    });
+  });
+}
+
+function eraseLog() {
+  logs.forEach((log) => {
+    log.currentIndex.forEach((index) => {
+      cells[index].classList.remove("log");
+      cells[index].style.backgroundColor = "grey";
+    });
+  });
+}
+
+drawLog();
+
+function animateLog() {
+  eraseLog();
+  moveLog();
+  drawLog();
 }
 
 document.addEventListener("keydown", function (key) {
