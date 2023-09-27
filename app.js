@@ -186,8 +186,7 @@ function animateCar() {
 
 //#endregion
 
-// function Log(currentIndex, speed) {}
-
+//#region Log stuff
 function Log(currentIndex, direction) {
   this.currentIndex = currentIndex;
   this.direction = direction;
@@ -215,7 +214,7 @@ function drawLog() {
   logs.forEach((log) => {
     log.currentIndex.forEach((index) => {
       cells[index].classList.add("log");
-      cells[index].style.backgroundColor = "brown";
+      cells[index].style.backgroundColor = "rgb(58, 27, 16)";
     });
   });
 }
@@ -224,12 +223,41 @@ function eraseLog() {
   logs.forEach((log) => {
     log.currentIndex.forEach((index) => {
       cells[index].classList.remove("log");
-      cells[index].style.backgroundColor = "grey";
+      cells[index].style.backgroundColor = "lightblue";
     });
   });
 }
 
-drawLog();
+function moveLog() {
+  logs.forEach((log) => {
+    if (log.direction === "right") {
+      log.currentIndex = log.currentIndex.map((index) => {
+        switch (index) {
+          case 68:
+            return (index = 46);
+          case 114:
+            return (index = 92);
+
+          case 160:
+            return (index = 138);
+          default:
+            return index + 1;
+        }
+      });
+    } else {
+      log.currentIndex = log.currentIndex.map((index) => {
+        switch (index) {
+          case 69:
+            return (index = 91);
+          case 115:
+            return (index = 137);
+          default:
+            return index - 1;
+        }
+      });
+    }
+  });
+}
 
 function animateLog() {
   eraseLog();
@@ -237,10 +265,14 @@ function animateLog() {
   drawLog();
 }
 
+//#endregion
+
 document.addEventListener("keydown", function (key) {
   if (key.keyCode === 13) {
     drawCar();
     setInterval(animateCar, 500);
+    drawLog();
+    setInterval(animateLog, 500);
   }
 });
 
